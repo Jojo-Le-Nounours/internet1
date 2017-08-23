@@ -4,12 +4,28 @@
 <IMG WIDTH="400" SRC="https://images-na.ssl-images-amazon.com/images/I/81DOfC5KIAL._SL1500_.jpg"/>
   <IMG SRC="IMG_0013.JPG" WIDTH="300">
     
+    
+    
+    <div>
+	Your image URL: <input type="text" id="imageurl"></input><button id="loadimage">load image</button>
+</div>
+  
+  
+<div>
+<button id="restore">restore</button><button id="rotate_ccw">rotate_ccw</button><button id="rotate_cw">rotate_cw</button>
+</div>
+<br>
+<div><canvas id="canvas"><img id="image" /></canvas></div>
+<div id="output"></div>
+    
   <ul>
   <li>Coffee</li>
   <li>Tea</li>
   <li>Milk</li>
 </ul>
   
+    
+    
 <h2>My First JavaScript</h2>
 
 <button type="button"
@@ -17,4 +33,97 @@ onclick="document.getElementById('demo').innerHTML = Date()">
 Click me to display Date and Time.</button>
 
 <p id="demo"></p>
+
+    var defaultimgurl = "IMG_0013.JPG";
+var imgurl = null;
+
+	$(document).ready( function() {
+        loadImage();
+        $('#loadimage').click(function() {
+			urlProvided();
+		});
+        $('#restore').click(function() {
+			loadImage();
+		});
+        $('#rotate_ccw').click(function() {
+			rotate_ccw();
+		});
+        $('#rotate_cw').click(function() {
+			rotate_cw();
+		});
+	});
+    function rotate_cw(){
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+        
+        var img = new Image();
+        img.src = imgurl;
+        
+        var maxsize = screenwidth;
+	    var w = maxsize;
+		var ratio = (img.width / w);
+		var h = (img.height / ratio);
+		canvas.width = h;
+		canvas.height = w;
+        
+		ctx.translate(w-h, w);
+        ctx.rotate( (-90 * Math.PI) / 180);
+        ctx.translate(0,-(w-h));
+        ctx.drawImage(img,0,0,w,h);
+        
+        ctx.save();
+    }
+
+    function rotate_ccw(){
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+        
+        var img = new Image();
+        img.src = imgurl;
+        
+        var maxsize = screenwidth;
+	    var w = maxsize;
+		var ratio = (img.width / w);
+		var h = (img.height / ratio);
+		canvas.width = h;
+		canvas.height = w;
+        
+		ctx.translate(h, 0);
+        ctx.rotate( (90 * Math.PI) / 180);
+        ctx.drawImage(img,0,0,w,h);
+        ctx.save();
+    }
+
+	function loadImage(){
+        var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+        
+		var img = new Image();
+        if(imgurl==null || imgurl==""){
+            imgurl = defaultimgurl;
+        }
+        img.src = imgurl;
+        
+        var maxsize = screenwidth;
+	    var w = maxsize;
+		var ratio = (img.width / w);
+		var h = (img.height / ratio);
+		canvas.width = w;
+		canvas.height = h;
+        
+        img.onload = function(){
+			ctx.drawImage(img,0,0,w,h);
+		};
+        
+        ctx.save();
+	}
+    function urlProvided() {
+		var userinput = document.getElementById('imageurl');
+		imgurl = userinput.val
+    
+    
+    
+    
+    
 </HTML>
