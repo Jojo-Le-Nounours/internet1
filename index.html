@@ -4,18 +4,18 @@
     var defaultimgurl = "IMG_0013.JPG";
 var imgurl = null;
 
-	$(document).ready( function() {
+	document.getElementById(document).ready( function() {
         loadImage();
-        $('#loadimage').click(function() {
+        document.getElementById('#loadimage').click(function() {
 			urlProvided();
 		});
-        $('#restore').click(function() {
+        document.getElementById('#restore').click(function() {
 			loadImage();
 		});
-        $('#rotate_ccw').click(function() {
+        document.getElementById('#rotate_ccw').click(function() {
 			rotate_ccw();
 		});
-        $('#rotate_cw').click(function() {
+        document.getElementById('#rotate_cw').click(function() {
 			rotate_cw();
 		});
 	});
