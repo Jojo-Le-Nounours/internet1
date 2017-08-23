@@ -6,18 +6,19 @@
     var defaultimgurl = "IMG_0013.JPG";
 var imgurl = null;
 
-	document.ready( function() {
+
+	$(document).ready( function() {
         loadImage();
-        document.getElementById('#loadimage').click(function() {
+        $('#loadimage').click(function() {
 			urlProvided();
 		});
-        document.getElementById('#restore').click(function() {
+        $('#restore').click(function() {
 			loadImage();
 		});
-        document.getElementById('#rotate_ccw').click(function() {
+        $('#rotate_ccw').click(function() {
 			rotate_ccw();
 		});
-        document.getElementById('#rotate_cw').click(function() {
+        $('#rotate_cw').click(function() {
 			rotate_cw();
 		});
 	});
